@@ -1,0 +1,38 @@
+extensions:
+  sigv4auth:
+    service: "aps"
+    region: "eu-west-1"
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+  awsecscontainermetrics:
+
+exporters:
+  logging:
+  awsxray:
+  awsemf:
+    log_group_name: 'AOTLogGroup'
+    log_stream_name: 'AOTLogStream'
+    namespace: 'AOTMetricNS'
+  prometheusremotewrite:
+    endpoint: "${AWS_PROMETHEUS_ENDPOINT}"
+    auth:
+      authenticator: sigv4auth
+    resource_to_telemetry_conversion:
+      enabled: true
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [awsxray]
+    metrics/application:
+      receivers: [otlp]
+      exporters: [awsemf, prometheusremotewrite]
+    metrics:
+      receivers: [awsecscontainermetrics]
+      exporters: [awsemf, prometheusremotewrite]
+  extensions: [sigv4auth]

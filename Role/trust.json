@@ -1,0 +1,18 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": [
+                    "apigateway.amazonaws.com",
+                    "events.amazonaws.com",
+                    "lambda.amazonaws.com",
+                    "tasks.apprunner.amazonaws.com",
+                    "ecs-tasks.amazonaws.com"
+                ]
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}

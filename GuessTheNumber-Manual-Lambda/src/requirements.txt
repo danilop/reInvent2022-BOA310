@@ -1,0 +1,5 @@
+boto3
+Flask
+opentelemetry-distro[otlp]
+opentelemetry-sdk-extension-aws
+opentelemetry-propagator-aws-xray

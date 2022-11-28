@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  GuessTheNumber-SAM
+
+Globals:
+  Function:
+    Timeout: 30
+    Tracing: Active
+
+Resources:
+  GuessTheNumberFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: guess_the_number/
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      MemorySize: 2048
+      Role: arn:aws:iam::024700040865:role/guess-the-number
+      Layers:
+        - !Sub arn:aws:lambda:${AWS::Region}:901920570463:layer:aws-otel-python-arm64-ver-1-14-0:1
+      Architectures:
+        - arm64
+      FunctionUrlConfig:
+        AuthType: NONE
+      Environment:
+        Variables:
+          AWS_LAMBDA_EXEC_WRAPPER: /opt/otel-instrument
+          OPENTELEMETRY_COLLECTOR_CONFIG_FILE: /var/task/collector-config.yaml
+
+Outputs:
+  GuessTheNumberFunctionUrlEndpoint:
+      Description: "My Lambda Function URL Endpoint"
+      Value:
+        Fn::GetAtt: GuessTheNumberFunctionUrl.FunctionUrl

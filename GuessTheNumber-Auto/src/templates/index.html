@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Guess the Number</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}">
+    </head>
+    <body>
+        <h1>Guess the Number</h1>
+        <form id="endpointForm">
+            <p>API Endpoint</p>
+            <input type="url" id="endpoint">
+            <input type="submit" id="start" value="Start Game">
+        </form>
+        <br>
+        <div id="game"></div>
+    </body>
+    <script src="{{ url_for('static', filename = 'index.js') }}"></script>
+</html>

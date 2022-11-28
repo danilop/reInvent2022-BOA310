@@ -1,0 +1,29 @@
+extensions:
+  sigv4auth:
+    service: "aps"
+    region: "us-west-2"
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+exporters:
+  logging:
+  awsxray:
+  awsemf:
+  prometheusremotewrite:
+    endpoint: "https://aps-workspaces.us-west-2.amazonaws.com/workspaces/ws-0bff5472-a617-4585-bd7a-327addb3386e/api/v1/remote_write"
+    auth:
+      authenticator: sigv4auth
+      
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [awsxray]
+    metrics:
+      receivers: [otlp]
+      exporters: [awsemf, prometheusremotewrite]
+  extensions: [sigv4auth]

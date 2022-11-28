@@ -1,0 +1,82 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:DescribeContributorInsights",
+                "dynamodb:RestoreTableToPointInTime",
+                "dynamodb:UpdateGlobalTable",
+                "dynamodb:DeleteTable",
+                "dynamodb:UpdateTableReplicaAutoScaling",
+                "dynamodb:DescribeTable",
+                "dynamodb:PartiQLInsert",
+                "dynamodb:GetItem",
+                "dynamodb:DescribeContinuousBackups",
+                "dynamodb:DescribeExport",
+                "dynamodb:EnableKinesisStreamingDestination",
+                "dynamodb:BatchGetItem",
+                "dynamodb:DisableKinesisStreamingDestination",
+                "sqs:GetQueueUrl",
+                "dynamodb:UpdateTimeToLive",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:PartiQLUpdate",
+                "sqs:SendMessage",
+                "dynamodb:Scan",
+                "dynamodb:StartAwsBackupJob",
+                "dynamodb:UpdateItem",
+                "logs:CreateLogGroup",
+                "logs:PutLogEvents",
+                "logs:PutMetricFilter",
+                "dynamodb:UpdateGlobalTableSettings",
+                "dynamodb:CreateTable",
+                "dynamodb:RestoreTableFromAwsBackup",
+                "dynamodb:GetShardIterator",
+                "dynamodb:ExportTableToPointInTime",
+                "dynamodb:DescribeBackup",
+                "dynamodb:UpdateTable",
+                "dynamodb:GetRecords",
+                "dynamodb:DescribeTableReplicaAutoScaling",
+                "dynamodb:DescribeImport",
+                "dynamodb:DeleteItem",
+                "dynamodb:CreateTableReplica",
+                "dynamodb:ListTagsOfResource",
+                "dynamodb:UpdateContributorInsights",
+                "dynamodb:CreateBackup",
+                "dynamodb:UpdateContinuousBackups",
+                "dynamodb:PartiQLSelect",
+                "dynamodb:CreateGlobalTable",
+                "dynamodb:DescribeKinesisStreamingDestination",
+                "dynamodb:ImportTable",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:Query",
+                "dynamodb:DescribeStream",
+                "dynamodb:DeleteTableReplica",
+                "dynamodb:DescribeTimeToLive",
+                "dynamodb:DescribeGlobalTableSettings",
+                "dynamodb:DescribeGlobalTable",
+                "dynamodb:RestoreTableFromBackup",
+                "dynamodb:DeleteBackup",
+                "dynamodb:PartiQLDelete"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:*:*:table/guess-the-number",
+                "arn:aws:sqs:*:*:guess-the-number-winners",
+                "arn:aws:logs:*:*:*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:DescribeReservedCapacityOfferings",
+                "dynamodb:DescribeReservedCapacity",
+                "dynamodb:PurchaseReservedCapacityOfferings",
+                "dynamodb:DescribeLimits",
+                "dynamodb:ListStreams"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
