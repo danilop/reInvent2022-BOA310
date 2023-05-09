@@ -13,7 +13,7 @@ Add these managed policies the the permissions:
 
 ## Container images
 
-The container image for th eLambda funciton is built for the arm64 architecture.
+The container image for the Lambda function is built for the arm64 architecture.
 The other container images are multi-arch and support both amd64 and arm64.
 
 ## AppRunner
