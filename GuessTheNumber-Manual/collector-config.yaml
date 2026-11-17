@@ -11,7 +11,7 @@ receivers:
   awsecscontainermetrics:
 
 exporters:
-  logging:
+  debug:
   awsxray:
   awsemf:
     log_group_name: 'AOTLogGroup'

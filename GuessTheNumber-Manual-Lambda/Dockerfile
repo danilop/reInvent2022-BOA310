@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/alpine:latest as layer-copy 
+FROM public.ecr.aws/docker/library/alpine:latest AS layer-copy
 
 ARG AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-"eu-west-1"}
 ARG AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-""}
@@ -12,11 +12,11 @@ RUN apk add aws-cli curl unzip
 RUN mkdir -p /opt
 
 ARG TARGETARCH
-RUN curl $(aws lambda get-layer-version-by-arn --arn arn:aws:lambda:${AWS_DEFAULT_REGION}:901920570463:layer:aws-otel-python-${TARGETARCH}-ver-1-14-0:1 --query 'Content.Location' --output text) --output layer.zip
+RUN curl $(aws lambda get-layer-version-by-arn --arn arn:aws:lambda:${AWS_DEFAULT_REGION}:901920570463:layer:aws-otel-python-${TARGETARCH}-ver-1-32-0:7 --query 'Content.Location' --output text) --output layer.zip
 RUN unzip layer.zip -d /opt
 
-FROM public.ecr.aws/docker/library/python:3.10-slim
-COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.5.1 /lambda-adapter /opt/extensions/lambda-adapter
+FROM public.ecr.aws/docker/library/python:3.13-slim
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:1.1.0 /lambda-adapter /opt/extensions/lambda-adapter
 
 WORKDIR /opt
 COPY --from=layer-copy /opt .
@@ -28,7 +28,7 @@ RUN pip3 install -r requirements.txt
 
 COPY src .
 
-ENV OPENTELEMETRY_COLLECTOR_CONFIG_FILE='/app/collector-config.yaml'
+ENV OPENTELEMETRY_COLLECTOR_CONFIG_URI='/app/collector-config.yaml'
 
 CMD /opt/otel-instrument flask run --host=0.0.0.0 --port=8080
 
