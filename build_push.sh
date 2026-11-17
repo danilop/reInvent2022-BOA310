@@ -22,7 +22,7 @@ docker buildx build --platform linux/amd64,linux/arm64 --push -t ${ACCOUNT_ID}.d
 cd ..
 
 cd GuessTheNumber-Manual-Lambda
-docker buildx build --platform linux/arm64 --push -t ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/guess-the-number-manual-lambda . \
+docker buildx build --platform linux/arm64 --provenance=false --push -t ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/guess-the-number-manual-lambda . \
     --build-arg AWS_DEFAULT_REGION=${REGION} \
     --build-arg AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id) \
     --build-arg AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)

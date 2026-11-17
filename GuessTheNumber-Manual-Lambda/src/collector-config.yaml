@@ -10,7 +10,7 @@ receivers:
       http:
 
 exporters:
-  logging:
+  debug:
   awsxray:
   awsemf:
   prometheusremotewrite:
