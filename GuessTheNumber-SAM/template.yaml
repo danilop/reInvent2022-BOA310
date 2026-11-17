@@ -14,11 +14,11 @@ Resources:
     Properties:
       CodeUri: guess_the_number/
       Handler: app.lambda_handler
-      Runtime: python3.9
+      Runtime: python3.13
       MemorySize: 2048
       Role: arn:aws:iam::<AWS_ACCOUNT>:role/guess-the-number
       Layers:
-        - !Sub arn:aws:lambda:${AWS::Region}:901920570463:layer:aws-otel-python-arm64-ver-1-14-0:1
+        - !Sub arn:aws:lambda:${AWS::Region}:901920570463:layer:aws-otel-python-arm64-ver-1-32-0:7
       Architectures:
         - arm64
       FunctionUrlConfig:
@@ -26,7 +26,7 @@ Resources:
       Environment:
         Variables:
           AWS_LAMBDA_EXEC_WRAPPER: /opt/otel-instrument
-          OPENTELEMETRY_COLLECTOR_CONFIG_FILE: /var/task/collector-config.yaml
+          OPENTELEMETRY_COLLECTOR_CONFIG_URI: /var/task/collector-config.yaml
 
 Outputs:
   GuessTheNumberFunctionUrlEndpoint:
